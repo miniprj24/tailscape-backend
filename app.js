@@ -2,16 +2,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const authRoutes = require('./router/authRoutes');
+const productRoutes = require('./router/productRoutes');
+const petRoutes = require('./router/petRoutes');
 // const adminRoutes = require('./router/adminRoutes');
 
 dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use('/api/auth', authRoutes);
 // app.use('/api/auth/admin', adminRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/pets', petRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected"))
