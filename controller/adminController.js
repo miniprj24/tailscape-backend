@@ -13,7 +13,7 @@
 
 //     try {
 //         // Check if the user exists
-//         const admin = await User.findOne({ email, isAdmin: true });
+//         const admin = await User.findOne({ email, role: 'Admin' });
 //         if (!admin) {
 //             return res.status(401).json({ message: "Invalid admin credentials" });
 //         }
@@ -26,13 +26,14 @@
 
 //         // Generate JWT token for admin
 //         const token = jwt.sign(
-//             { id: admin._id, isAdmin: admin.isAdmin },
+//             { id: admin._id, role: admin.role },
 //             process.env.JWT_SECRET,
 //             { expiresIn: '2h' }
 //         );
 
 //         return res.status(200).json({
 //             message: "Admin login successful",
+//             role: admin.role,
 //             token
 //         });
 
