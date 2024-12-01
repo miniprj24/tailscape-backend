@@ -13,9 +13,4 @@ const authenticateUser = (req, res, next) => {
     }
 };
 
-// const adminCheck = (req, res, next) => {
-//     if (req.user && req.user.role === 'Admin') return next();
-//     return res.status(403).json({ message: "Admin access required" });
-// };
-
-module.exports = { authenticateUser, adminCheck };
+module.exports = { authenticateUser };

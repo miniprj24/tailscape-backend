@@ -6,7 +6,8 @@ const cors = require('cors');
 const authRoutes = require('./router/authRoutes');
 const productRoutes = require('./router/productRoutes');
 const petRoutes = require('./router/petRoutes');
-// const adminRoutes = require('./router/adminRoutes');
+const breedRoutes = require('./router/breedRoutes');
+const appointmentRoutes = require('./router/storeAppointmentRoutes');
 
 dotenv.config();
 const app = express();
@@ -14,9 +15,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/auth', authRoutes);
-// app.use('/api/auth/admin', adminRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/pets', petRoutes);
+app.use('/api', breedRoutes);
+app.use('/api/appointments', appointmentRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected"))
