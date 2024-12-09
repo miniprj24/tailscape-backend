@@ -48,7 +48,7 @@ const login = async (req, res) => {
     }
 
     // Validate UIOrigin against the user's role
-    if ((user.role === 'admin' && UIOrigin !== 'admin') || (user.role === 'user' && UIOrigin !== 'user')) {
+    if ((user.role === 'admin' && UIOrigin !== 'admin') || (user.role === 'user' && UIOrigin !== 'user') || (user.role === 'vet' && UIOrigin !== 'vet')) {
       return res.status(403).json({ message: 'Access denied for this portal' });
     }
 
