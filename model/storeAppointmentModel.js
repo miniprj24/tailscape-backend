@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const storeAppointmentSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
     petType: {
         type: String,
         required: true,

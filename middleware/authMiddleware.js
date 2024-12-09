@@ -20,4 +20,11 @@ const checkAdminRole = (req, res, next) => {
     next();
 };
 
-module.exports = { authenticateUser, checkAdminRole };
+const checkVetRole = (req, res, next) => {
+    if (req.user.role !== 'vet') {
+        return res.status(403).json({ message: 'Access denied. Vets only' });
+    }
+    next();
+};
+
+module.exports = { authenticateUser, checkAdminRole, checkVetRole };
