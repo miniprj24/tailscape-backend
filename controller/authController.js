@@ -22,8 +22,7 @@ const signUp = async (req, res) => {
       return res.status(400).json({ message: 'Email already in use' });
     }
 
-    // Dynamically set role based on UIOrigin
-    const role = UIOrigin === 'admin' ? 'admin' : 'user';
+    const role = UIOrigin === 'admin' ? 'admin' : UIOrigin === 'vet' ? 'vet' : 'user';
 
     const newUser = new User({ name, email, password, role });
     await newUser.save();
