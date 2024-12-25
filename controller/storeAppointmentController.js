@@ -102,3 +102,13 @@ exports.updateAppointmentStatus = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+exports.deleteAppointment = async (req, res) => {
+    try {
+        await Product.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: 'Appointment deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+    }
+}

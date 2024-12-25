@@ -22,8 +22,7 @@ const signUp = async (req, res) => {
       return res.status(400).json({ message: 'Email already in use' });
     }
 
-    // Dynamically set role based on UIOrigin
-    const role = UIOrigin === 'admin' ? 'admin' : 'user';
+    const role = UIOrigin === 'admin' ? 'admin' : UIOrigin === 'vet' ? 'vet' : 'user';
 
     const newUser = new User({ name, email, password, role });
     await newUser.save();
@@ -48,7 +47,7 @@ const login = async (req, res) => {
     }
 
     // Validate UIOrigin against the user's role
-    if ((user.role === 'admin' && UIOrigin !== 'admin') || (user.role === 'user' && UIOrigin !== 'user')) {
+    if ((user.role === 'admin' && UIOrigin !== 'admin') || (user.role === 'user' && UIOrigin !== 'user') || (user.role === 'vet' && UIOrigin !== 'vet')) {
       return res.status(403).json({ message: 'Access denied for this portal' });
     }
 
