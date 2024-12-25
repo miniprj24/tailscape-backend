@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const storeAppointmentSchema = new mongoose.Schema({
     userId: {
@@ -6,31 +6,33 @@ const storeAppointmentSchema = new mongoose.Schema({
         required: true
     },
     petType: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     breed: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     date: {
-        type: Date,
-        required: true,
+      type: Date,
+      required: true,
     },
     time: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     status: {
-        type: String,
-        default: 'pending',
-        enum: ['pending', 'approved', 'denied'],
-    },
-},
-    { collection: 'storeappointments' }
-
+      type: String,
+      default: "pending",
+      enum: ["pending", "approved", "denied"],
+    }
+  },
+  { collection: "storeappointments" }
 );
 
-const StoreAppointment = mongoose.model('StoreAppointment', storeAppointmentSchema);
+const StoreAppointment = mongoose.model(
+  "StoreAppointment",
+  storeAppointmentSchema
+);
 
 module.exports = StoreAppointment;
