@@ -25,11 +25,7 @@ const storeAppointmentSchema = new mongoose.Schema({
       type: String,
       default: "pending",
       enum: ["pending", "approved", "denied"],
-    },
-    userId: {
-      type: String,
-      required: true,
-    },
+    }
   },
   { collection: "storeappointments" }
 );
