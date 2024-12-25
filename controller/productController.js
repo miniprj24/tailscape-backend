@@ -1,5 +1,34 @@
 const Product = require('../model/productModel');
 const { authenticateUser, checkAdminRole } = require('../middleware/authMiddleware');
+ // Initialize the Express app
+
+// Middleware for parsing JSON bodies
+
+exports.getProductById = async (req, res) => {
+
+  try {
+    const { id } = req.params;
+
+    // Validate the ID
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid product ID' });
+    }
+
+    // Find product by ID
+    const product = await Product.findById(id);
+
+    // Check if product exists
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    // Return the product
+    res.status(200).json({ product });
+  } catch (err) {
+    console.error('Error fetching product by ID:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 exports.getAllProducts = async (req, res) => {
   try {
