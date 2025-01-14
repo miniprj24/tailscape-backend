@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const storeAppointmentSchema = new mongoose.Schema({
-    userId: {
-        type: String,
-        required: true
-    },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     petType: {
       type: String,
       required: true,

@@ -9,6 +9,7 @@ const petRoutes = require('./router/petRoutes');
 const breedRoutes = require('./router/breedRoutes');
 const appointmentRoutes = require('./router/storeAppointmentRoutes');
 const contactRouters = require('./router/contactRouters');
+const vetHospitalRoutes = require('./router/vetHospitalRoutes');
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.use('/api/pets', petRoutes);
 app.use('/api', breedRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api', contactRouters);
+app.use('/api/vetHospitals',vetHospitalRoutes)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected"))
