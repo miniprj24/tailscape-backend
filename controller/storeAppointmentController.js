@@ -31,7 +31,7 @@ exports.createAppointment = async (req, res) => {
 
 exports.getAllAppointments = async (req, res) => {
   try {
-    const appointments = await StoreAppointment.find();
+    const appointments = await StoreAppointment.find().populate('userId', 'name email phone');
     res.status(200).json({ appointments });
   } catch (err) {
     console.error("Error fetching appointments:", err.message);
@@ -47,7 +47,9 @@ exports.getAppointmentsByUser = async (req, res) => {
       return res.status(400).json({ message: "User ID is required" });
     }
 
-    const userAppointments = await StoreAppointment.find({ userId });
+    const userAppointments = await StoreAppointment.find({ userId: userId })
+    .populate('userId', 'name email') // Optionally populate user details (e.g., name, email)
+    .exec();
 
     if (userAppointments.length === 0) {
       return res
