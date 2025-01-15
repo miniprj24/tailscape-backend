@@ -2,18 +2,19 @@ const StoreAppointment = require("../model/storeAppointmentModel");
 
 exports.createAppointment = async (req, res) => {
   try {
-    const { petType, breed, date, time, id } = req.body;
+    const { petType, breed, date, time, userId } = req.body;
 
-    if (!petType || !breed || !date || !time || !id) {
+    if (!petType || !breed || !date || !time  ) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
     const newAppointment = new StoreAppointment({
-      userId: id,
+      userId,
       petType,
       breed,
       date,
       time,
+      status: 'pending'
     });
 
     const savedAppointment = await newAppointment.save();

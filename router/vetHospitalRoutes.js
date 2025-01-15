@@ -9,7 +9,7 @@ router.post('/', vetHospitalController.createVetHospital);
 router.get('/', vetHospitalController.getAllVetHospitals);
 
 // GET: Get a VetHospital by ID
-router.get('/:id', vetHospitalController.getVetHospitalById);
+router.get('/:type', vetHospitalController.getVetHospitalByType);
 
 // PUT: Update a VetHospital by ID
 router.put('/:id', vetHospitalController.updateVetHospital);

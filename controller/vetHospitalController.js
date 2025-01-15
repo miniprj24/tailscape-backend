@@ -24,13 +24,14 @@ const getAllVetHospitals = async (req, res) => {
 };
 
 // GET: Get a VetHospital by ID
-const getVetHospitalById = async (req, res) => {
+const getVetHospitalByType = async (req, res) => {
   try {
-    const hospital = await VetHospital.findById(req.params.id);
-    if (!hospital) {
+    const hospitals = await VetHospital.find({ 
+      hospital_type: req.params.type });
+    if (!hospitals) {
       return res.status(404).json({ message: 'Vet Hospital not found' });
     }
-    res.status(200).json(hospital);
+    res.status(200).json(hospitals);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error fetching Vet Hospital', error: error.message });
@@ -68,7 +69,7 @@ const deleteVetHospital = async (req, res) => {
 module.exports = {
   createVetHospital,
   getAllVetHospitals,
-  getVetHospitalById,
+  getVetHospitalByType,
   updateVetHospital,
   deleteVetHospital,
 };
